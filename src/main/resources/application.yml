@@ -1,0 +1,40 @@
+# File Transfer Application Configuration
+# ========================================
+# Activate profile via program argument: --spring.profiles.active=dev
+
+spring:
+  application:
+    name: file-transfer-app
+
+# Directory route mappings
+# Add as many source-destination pairs as needed
+file:
+  routes:
+    - source: /data/path1
+      destination: /mnt/server/path1
+    - source: /data/path2
+      destination: /mnt/server/path2
+  error:
+    directory: /data/error
+
+# REST API endpoint for file transfer notification
+api:
+  endpoint:
+    url: http4://example-service/api/file-transfer
+
+# Camel configuration
+camel:
+  springboot:
+    main-run-controller: true
+
+# Logging configuration
+logging:
+  level:
+    com.company.filetransfer: INFO
+    org.apache.camel: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Server configuration
+server:
+  port: 8080
